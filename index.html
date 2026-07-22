@@ -1,160 +1,338 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Delta – Privacy Policy</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #0f0f13;
-      color: #e2e2e8;
-      line-height: 1.7;
+<title>Delta – Imprint & Privacy Policy</title>
+<style>
+  :root {
+    --bg:      #F7F7FA;
+    --surface: #FFFFFF;
+    --border:  #E2E2EC;
+    --text:    #1A1A26;
+    --sub:     #6B6B7E;
+    --accent:  #6D28D9;
+    --accent-l:#EDE9FE;
+    --tag-bg:  #EDE9FE;
+    --tag-fg:  #5B21B6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#0D0E14; --surface:#15161E; --border:#252530; --text:#E2E2EE;
+      --sub:#7A7A90; --accent:#8B5CF6; --accent-l:#1E1530;
+      --tag-bg:#1E1530; --tag-fg:#A78BFA;
     }
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 60px 24px 80px;
-    }
-    .badge {
-      display: inline-block;
-      background: #7c3aed18;
-      color: #7c3aed;
-      border: 1px solid #7c3aed40;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      padding: 4px 10px;
-      margin-bottom: 20px;
-    }
-    h1 {
-      font-size: 36px;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      color: #ffffff;
-      margin-bottom: 8px;
-    }
-    .subtitle {
-      color: #6b7280;
-      font-size: 14px;
-      margin-bottom: 48px;
-      padding-bottom: 32px;
-      border-bottom: 1px solid #1f1f27;
-    }
-    h2 {
-      font-size: 18px;
-      font-weight: 700;
-      color: #ffffff;
-      margin: 36px 0 12px;
-      letter-spacing: -0.02em;
-    }
-    p, li {
-      font-size: 15px;
-      color: #9ca3af;
-    }
-    ul {
-      padding-left: 20px;
-      margin: 8px 0;
-    }
-    li { margin-bottom: 6px; }
-    a { color: #7c3aed; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .card {
-      background: #16161e;
-      border: 1px solid #1f1f27;
-      border-radius: 14px;
-      padding: 20px 22px;
-      margin-top: 12px;
-    }
-    .card p { margin: 0; }
-    .footer {
-      margin-top: 60px;
-      padding-top: 24px;
-      border-top: 1px solid #1f1f27;
-      font-size: 13px;
-      color: #4b5563;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <span class="badge">PRIVACY POLICY</span>
-    <h1>Delta</h1>
-    <p class="subtitle">Last updated: March 2026 · Effective immediately</p>
+  }
+  :root[data-theme="light"] {
+    --bg:#F7F7FA; --surface:#FFFFFF; --border:#E2E2EC; --text:#1A1A26;
+    --sub:#6B6B7E; --accent:#6D28D9; --accent-l:#EDE9FE;
+    --tag-bg:#EDE9FE; --tag-fg:#5B21B6;
+  }
+  :root[data-theme="dark"] {
+    --bg:#0D0E14; --surface:#15161E; --border:#252530; --text:#E2E2EE;
+    --sub:#7A7A90; --accent:#8B5CF6; --accent-l:#1E1530;
+    --tag-bg:#1E1530; --tag-fg:#A78BFA;
+  }
 
-    <h2>1. Overview</h2>
-    <p>Delta ("the App") is a personal productivity and habit tracking application. We take your privacy seriously. This policy explains what data we collect, why we collect it, and how it is stored and protected.</p>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; font-size: 15px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
 
-    <h2>2. Data We Collect</h2>
-    <p>The App collects the following data to provide its core functionality:</p>
-    <ul>
-      <li><strong>Google Account information</strong> – your name and email address, used solely for authentication via Google Sign-In.</li>
-      <li><strong>App content</strong> – tasks, habits, calendar blocks, goals, and profile settings you create within the App.</li>
-      <li><strong>Usage data</strong> – streak counts, XP, completed tasks and habits, stored to power the gamification system.</li>
-    </ul>
+  header { position: sticky; top: 0; z-index: 10; background: var(--surface); border-bottom: 1px solid var(--border); padding: 14px 24px; display: flex; align-items: center; gap: 12px; }
+  .logo { width: 28px; height: 28px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+  header .app-name { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
+  nav { margin-left: auto; display: flex; gap: 4px; align-items: center; }
+  nav a { font-size: 13px; color: var(--sub); text-decoration: none; padding: 5px 10px; border-radius: 6px; transition: background 0.15s, color 0.15s; }
+  nav a:hover { background: var(--accent-l); color: var(--accent); }
 
-    <h2>3. How We Use Your Data</h2>
-    <ul>
-      <li>To sync your data across devices via Firebase (Google Cloud).</li>
-      <li>To display your personal statistics and progress within the App.</li>
-      <li>To send optional local push notifications (reminders for tasks and streaks).</li>
-    </ul>
-    <p>We do <strong>not</strong> sell, share, or transfer your data to third parties. We do not use your data for advertising.</p>
+  .lang-btn { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 20px; border: 1.5px solid var(--border); background: transparent; color: var(--sub); cursor: pointer; transition: all 0.15s; letter-spacing: 0.04em; }
+  .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-    <h2>4. Legal Basis for Processing</h2>
-    <p>If you are located in the European Economic Area, personal data is processed in accordance with the General Data Protection Regulation (GDPR).</p>
-    <ul>
-      <li><strong>User consent</strong> – when you sign in and use the App.</li>
-      <li><strong>Service necessity</strong> – data processing is required to provide the functionality of the App, such as syncing tasks and storing progress.</li>
-    </ul>
+  main { max-width: 680px; margin: 0 auto; padding: 48px 24px 80px; }
 
-    <h2>5. Data Storage</h2>
-    <div class="card">
-      <p>All user data is stored in <strong>Google Firebase Firestore</strong>, a secure cloud database provided by Google LLC. Data is associated with your unique user ID and can only be accessed by you and the services required to operate the App.</p>
-      <p style="margin-top:10px;">Data may be processed on secure servers located in the European Union and the United States.</p>
+  .section { margin-bottom: 56px; }
+  .section-label { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: var(--tag-bg); color: var(--tag-fg); padding: 4px 10px; border-radius: 20px; margin-bottom: 16px; }
+  .section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); margin-bottom: 20px; text-wrap: balance; }
+
+  .block { border-left: 2px solid var(--border); padding-left: 20px; margin-bottom: 28px; }
+  .block h3 { font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--sub); margin-bottom: 8px; }
+  .block p, .block li { font-size: 14.5px; color: var(--text); line-height: 1.75; }
+  .block ul, .block ol { padding-left: 18px; }
+  .block li { margin-bottom: 4px; }
+
+  .info-grid { display: grid; grid-template-columns: 140px 1fr; gap: 0 16px; font-size: 14.5px; }
+  .info-grid dt { color: var(--sub); font-weight: 500; padding: 6px 0; border-bottom: 1px solid var(--border); }
+  .info-grid dd { color: var(--text); padding: 6px 0; border-bottom: 1px solid var(--border); }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 56px 0; }
+
+  footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 12px; color: var(--sub); }
+
+  [data-lang] { display: none; }
+  .lang-en [data-lang="en"] { display: contents; }
+  .lang-de [data-lang="de"] { display: contents; }
+  span[data-lang], p[data-lang], li[data-lang], dd[data-lang], dt[data-lang] { display: none; }
+  .lang-en span[data-lang="en"], .lang-en p[data-lang="en"], .lang-en li[data-lang="en"], .lang-en dd[data-lang="en"] { display: block; }
+  .lang-de span[data-lang="de"], .lang-de p[data-lang="de"], .lang-de li[data-lang="de"], .lang-de dd[data-lang="de"] { display: block; }
+  .lang-en dt[data-lang="en"], .lang-de dt[data-lang="de"] { display: block; }
+
+  @media (max-width: 480px) {
+    nav a:not(.lang-btn-wrap) { display: none; }
+    .info-grid { grid-template-columns: 1fr; }
+    .info-grid dt, .info-grid dd { border-bottom: none; padding: 2px 0; }
+    .info-grid dt { font-size: 12px; margin-top: 12px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<header>
+  <div class="logo">⚡</div>
+  <span class="app-name">Delta</span>
+  <nav>
+    <a href="#imprint" data-en="Imprint" data-de="Impressum">Imprint</a>
+    <a href="#privacy" data-en="Privacy" data-de="Datenschutz">Privacy</a>
+    <button class="lang-btn" onclick="toggleLang()" id="langBtn">DE</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ══ IMPRINT ══ -->
+  <section class="section" id="imprint">
+    <div class="section-label">
+      <span data-lang="en">Legal</span>
+      <span data-lang="de">Rechtliches</span>
+    </div>
+    <h2>
+      <span data-lang="en">Imprint</span>
+      <span data-lang="de">Impressum</span>
+    </h2>
+
+    <div class="block">
+      <h3>
+        <span data-lang="en">Information pursuant to § 5 ECG (Austria)</span>
+        <span data-lang="de">Angaben gemäß § 5 ECG</span>
+      </h3>
+      <dl class="info-grid">
+        <dt data-lang="en">Name</dt>
+        <dt data-lang="de">Name</dt>
+        <dd>Bastian Krassnitzer</dd>
+        <dt data-lang="en">Address</dt>
+        <dt data-lang="de">Anschrift</dt>
+        <dd>9556 Liebenfels, Austria</dd>
+        <dt>E-Mail</dt>
+        <dd><a href="mailto:bastiankrassbusiness@gmail.com">bastiankrassbusiness@gmail.com</a></dd>
+        <dt data-lang="en">Activity</dt>
+        <dt data-lang="de">Tätigkeit</dt>
+        <dd data-lang="en">Private app development (non-commercial)</dd>
+        <dd data-lang="de">Private App-Entwicklung (kein Gewerbe)</dd>
+      </dl>
     </div>
 
-    <h2>6. Data Security</h2>
-    <p>We implement reasonable technical and organizational measures to protect your data against unauthorized access, loss, misuse, or alteration.</p>
+    <div class="block">
+      <h3>
+        <span data-lang="en">Liability Notice</span>
+        <span data-lang="de">Haftungshinweis</span>
+      </h3>
+      <p data-lang="en">Despite careful review, we accept no liability for the content of external links. The operators of linked pages are solely responsible for their content.</p>
+      <p data-lang="de">Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.</p>
+    </div>
+  </section>
 
-    <h2>7. Data Retention & Deletion</h2>
-    <p>You can permanently delete your account and all associated data at any time directly within the App under <strong>Profile → Delete account</strong>. Deletion is immediate and irreversible.</p>
+  <hr class="divider">
 
-    <h2>8. Third-Party Services</h2>
-    <p>The App uses the following third-party services:</p>
-    <ul>
-      <li><a href="https://firebase.google.com/support/privacy" target="_blank">Google Firebase</a> – authentication and cloud storage</li>
-      <li><a href="https://policies.google.com/privacy" target="_blank">Google Sign-In</a> – account authentication</li>
-      <li><a href="https://play.google.com/about/play-terms/" target="_blank">Google Play Billing</a> – in-app purchases (Pro subscription)</li>
-    </ul>
+  <!-- ══ PRIVACY ══ -->
+  <section class="section" id="privacy">
+    <div class="section-label">
+      <span data-lang="en">Privacy</span>
+      <span data-lang="de">Datenschutz</span>
+    </div>
+    <h2>
+      <span data-lang="en">Privacy Policy</span>
+      <span data-lang="de">Datenschutzerklärung</span>
+    </h2>
 
-    <h2>9. User Rights</h2>
-    <p>Depending on your location and applicable data protection laws, you may have the right to:</p>
-    <ul>
-      <li>Access your personal data</li>
-      <li>Request correction of inaccurate data</li>
-      <li>Request deletion of your personal data</li>
-      <li>Withdraw consent for data processing</li>
-    </ul>
-    <p>You can exercise these rights by contacting us via email.</p>
-
-    <h2>10. Children's Privacy</h2>
-    <p>The App is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13.</p>
-
-    <h2>11. Changes to This Policy</h2>
-    <p>We may update this Privacy Policy occasionally. Any changes will be reflected on this page with an updated date. Continued use of the App after changes constitutes acceptance of the updated policy.</p>
-
-    <h2>12. Contact</h2>
-    <p>If you have any questions about this Privacy Policy, please contact us at:</p>
-    <div class="card">
-      <p>📧 <a href="mailto:bastiankrassbusiness@gmail.com">bastiankrassbusiness@gmail.com</a></p>
+    <div class="block">
+      <h3>
+        <span data-lang="en">Controller</span>
+        <span data-lang="de">Verantwortlicher</span>
+      </h3>
+      <p>Bastian Krassnitzer<br>9556 Liebenfels, Austria<br><a href="mailto:bastiankrassbusiness@gmail.com">bastiankrassbusiness@gmail.com</a></p>
     </div>
 
-    <div class="footer">
-      <p>© 2026 Delta App. All rights reserved.</p>
+    <div class="block">
+      <h3>
+        <span data-lang="en">Data We Collect</span>
+        <span data-lang="de">Welche Daten wir verarbeiten</span>
+      </h3>
+      <ul>
+        <li data-lang="en"><strong>Account data</strong> – name and email address from your Google account (sign-in only)</li>
+        <li data-lang="de"><strong>Kontodaten</strong> – Name und E-Mail-Adresse aus deinem Google-Konto (nur bei Anmeldung)</li>
+        <li data-lang="en"><strong>App content</strong> – tasks, habits, calendar entries, and mood entries you create</li>
+        <li data-lang="de"><strong>App-Inhalte</strong> – Aufgaben, Gewohnheiten, Kalendereinträge und Stimmungseinträge, die du selbst erstellst</li>
+        <li data-lang="en"><strong>Progress data</strong> – XP, level, streak, badges, and activity data</li>
+        <li data-lang="de"><strong>Fortschrittsdaten</strong> – XP, Level, Streak, Abzeichen und Aktivitätsdaten</li>
+        <li data-lang="en"><strong>Device data</strong> – notification token (only if you enable reminders)</li>
+        <li data-lang="de"><strong>Gerätedaten</strong> – Benachrichtigungstoken (nur wenn du Erinnerungen aktivierst)</li>
+      </ul>
     </div>
-  </div>
-</body>
-</html>
+
+    <div class="block">
+      <h3>
+        <span data-lang="en">How We Use Your Data</span>
+        <span data-lang="de">Zweck der Verarbeitung</span>
+      </h3>
+      <ul>
+        <li data-lang="en">Syncing your content across devices via Firebase</li>
+        <li data-lang="de">Synchronisation deiner Inhalte geräteübergreifend über Firebase</li>
+        <li data-lang="en">Calculating progress statistics and gamification (XP, level, streak)</li>
+        <li data-lang="de">Berechnung von Fortschrittsstatistiken und Gamification (XP, Level, Streak)</li>
+        <li data-lang="en">Displaying the optional leaderboard (signed-in accounts only)</li>
+        <li data-lang="de">Anzeige im optionalen Leaderboard (nur bei angemeldetem Konto)</li>
+        <li data-lang="en">Sending optional local push notifications (task and streak reminders)</li>
+        <li data-lang="de">Versand optionaler lokaler Push-Benachrichtigungen (Aufgaben- und Streak-Erinnerungen)</li>
+      </ul>
+      <p data-lang="en" style="margin-top:12px;"><strong>We do not sell, share, or transfer your data to third parties. We do not use your data for advertising.</strong></p>
+      <p data-lang="de" style="margin-top:12px;"><strong>Wir verkaufen, teilen oder übertragen deine Daten nicht an Dritte. Wir verwenden deine Daten nicht für Werbezwecke.</strong></p>
+    </div>
+
+    <div class="block">
+      <h3>
+        <span data-lang="en">Legal Basis</span>
+        <span data-lang="de">Rechtsgrundlage</span>
+      </h3>
+      <p data-lang="en">Processing is based on your consent (Art. 6(1)(a) GDPR) and on the necessity to perform the contract (Art. 6(1)(b) GDPR) for paid features.</p>
+      <p data-lang="de">Die Verarbeitung erfolgt auf Grundlage deiner Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sowie zur Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO) für kostenpflichtige Funktionen.</p>
+    </div>
+
+    <div class="block">
+      <h3>
+        <span data-lang="en">Third-Party Services</span>
+        <span data-lang="de">Eingesetzte Dienste</span>
+      </h3>
+      <ul>
+        <li data-lang="en"><strong>Google Firebase</strong> (Authentication, Firestore) – sign-in and data storage. Provider: Google LLC, USA. <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Privacy Policy</a></li>
+        <li data-lang="de"><strong>Google Firebase</strong> (Authentication, Cloud Firestore) – Kontoanmeldung und Datenspeicherung. Anbieter: Google LLC, USA. <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Datenschutzrichtlinie</a></li>
+        <li data-lang="en"><strong>Google Sign-In</strong> – account authentication. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a></li>
+        <li data-lang="de"><strong>Google Sign-In</strong> – Authentifizierung über dein Google-Konto. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Datenschutzrichtlinie</a></li>
+        <li data-lang="en"><strong>Google Play Billing</strong> – Pro subscription and in-app purchases. <a href="https://play.google.com/about/play-terms/" target="_blank" rel="noopener">Terms</a></li>
+        <li data-lang="de"><strong>Google Play Billing</strong> – Abwicklung des Pro-Abonnements und In-App-Käufe. <a href="https://play.google.com/about/play-terms/" target="_blank" rel="noopener">Nutzungsbedingungen</a></li>
+        <li data-lang="en"><strong>xAI (Grok)</strong> – for the optional "AI Insights" feature, aggregated activity data (task count, streak, level) is sent to generate personalized summaries. Provider: xAI Corp., USA.</li>
+        <li data-lang="de"><strong>xAI (Grok)</strong> – Für die optionale Funktion „KI-Einblicke" werden aggregierte Aktivitätsdaten (Aufgabenanzahl, Streak, Level) zur Generierung personalisierter Zusammenfassungen übermittelt. Anbieter: xAI Corp., USA.</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <h3>
+        <span data-lang="en">Data Security</span>
+        <span data-lang="de">Datensicherheit</span>
+      </h3>
+      <p data-lang="en">We implement reasonable technical and organizational measures to protect your data against unauthorized access, loss, misuse, or alteration. All data is transmitted over encrypted connections (HTTPS/TLS) and stored in Firebase, accessible only via your unique user ID.</p>
+      <p data-lang="de">Wir setzen angemessene technische und organisatorische Maßnahmen ein, um deine Daten vor unbefugtem Zugriff, Verlust, Missbrauch oder Veränderung zu schützen. Alle Daten werden über verschlüsselte Verbindungen (HTTPS/TLS) übertragen und sind in Firebase ausschließlich deiner Benutzer-ID zugeordnet.</p>
+    </div>
+
+    <div class="block">
+      <h3>
+        <span data-lang="en">International Transfers</span>
+        <span data-lang="de">Datenweitergabe in Drittländer</span>
+      </h3>
+      <p data-lang="en">Google Firebase and xAI process data in the USA. Google LLC is certified under the EU-US Data Privacy Framework. Transfers to xAI are based on your consent (Art. 49(1)(a) GDPR).</p>
+      <p data-lang="de">Google Firebase und xAI verarbeiten Daten unter anderem in den USA. Google LLC ist unter dem EU-US Data Privacy Framework zertifiziert. Für xAI erfolgt die Übermittlung auf Grundlage deiner Einwilligung (Art. 49 Abs. 1 lit. a DSGVO).</p>
+    </div>
+
+    <div class="block">
+      <h3>
+        <span data-lang="en">Retention &amp; Deletion</span>
+        <span data-lang="de">Speicherdauer</span>
+      </h3>
+      <p data-lang="en">Your data is stored as long as your account is active. You can permanently delete your account and all associated data at any time in the app under <em>Profile → Delete Account</em>. Deletion is immediate and irreversible.</p>
+      <p data-lang="de">Deine Daten werden solange gespeichert, wie dein Konto aktiv ist. Du kannst dein Konto und alle zugehörigen Daten jederzeit direkt in der App unter <em>Profil → Konto löschen</em> unwiderruflich löschen.</p>
+    </div>
+
+    <div class="block">
+      <h3>
+        <span data-lang="en">Your Rights (GDPR Art. 15–22)</span>
+        <span data-lang="de">Deine Rechte (DSGVO Art. 15–22)</span>
+      </h3>
+      <ul>
+        <li data-lang="en">Access to your personal data</li>
+        <li data-lang="de">Auskunft über gespeicherte Daten</li>
+        <li data-lang="en">Correction of inaccurate data</li>
+        <li data-lang="de">Berichtigung unrichtiger Daten</li>
+        <li data-lang="en">Deletion of your data</li>
+        <li data-lang="de">Löschung deiner Daten</li>
+        <li data-lang="en">Restriction of processing</li>
+        <li data-lang="de">Einschränkung der Verarbeitung</li>
+        <li data-lang="en">Objection to processing</li>
+        <li data-lang="de">Widerspruch gegen die Verarbeitung</li>
+        <li data-lang="en">Data portability</li>
+        <li data-lang="de">Datenübertragbarkeit</li>
+        <li data-lang="en">Withdrawal of consent</li>
+        <li data-lang="de">Widerruf einer erteilten Einwilligung</li>
+      </ul>
+      <p data-lang="en" style="margin-top:12px;">Contact: <a href="mailto:bastiankrassbusiness@gmail.com">bastiankrassbusiness@gmail.com</a></p>
+      <p data-lang="de" style="margin-top:12px;">Für Anfragen: <a href="mailto:bastiankrassbusiness@gmail.com">bastiankrassbusiness@gmail.com</a></p>
+      <p data-lang="en" style="margin-top:8px;">You also have the right to lodge a complaint with the Austrian Data Protection Authority: <a href="https://www.dsb.gv.at" target="_blank" rel="noopener">dsb.gv.at</a></p>
+      <p data-lang="de" style="margin-top:8px;">Du hast außerdem das Recht, eine Beschwerde bei der österreichischen Datenschutzbehörde einzureichen: <a href="https://www.dsb.gv.at" target="_blank" rel="noopener">dsb.gv.at</a></p>
+    </div>
+
+    <div class="block">
+      <h3>
+        <span data-lang="en">Children's Privacy</span>
+        <span data-lang="de">Kinder</span>
+      </h3>
+      <p data-lang="en">The App is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13.</p>
+      <p data-lang="de">Die App richtet sich nicht an Kinder unter 13 Jahren. Wir erheben wissentlich keine personenbezogenen Daten von Kindern unter 13 Jahren.</p>
+    </div>
+
+    <div class="block">
+      <h3>
+        <span data-lang="en">Guest Mode</span>
+        <span data-lang="de">Gastmodus</span>
+      </h3>
+      <p data-lang="en">You can use Delta without an account. In this case, all data is stored exclusively on your device and is not transferred to any server.</p>
+      <p data-lang="de">Du kannst Delta ohne Konto nutzen. In diesem Fall werden alle Daten ausschließlich lokal auf deinem Gerät gespeichert und nicht an Server übertragen.</p>
+    </div>
+
+    <div class="block">
+      <h3>
+        <span data-lang="en">Changes to This Policy</span>
+        <span data-lang="de">Änderungen dieser Erklärung</span>
+      </h3>
+      <p data-lang="en">We may update this Privacy Policy occasionally. Changes will be reflected on this page with an updated date. Continued use of the App after changes constitutes acceptance of the updated policy.</p>
+      <p data-lang="de">Wir behalten uns vor, diese Datenschutzerklärung bei wesentlichen Änderungen der App oder der Rechtslage anzupassen. Die weitere Nutzung der App nach einer Änderung gilt als Zustimmung zur aktualisierten Erklärung.</p>
+    </div>
+
+    <p style="font-size:13px; color:var(--sub); margin-top:32px;">
+      <span data-lang="en">Last updated: July 2026</span>
+      <span data-lang="de">Stand: Juli 2026</span>
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  © 2026 Delta App ·
+  <a href="mailto:bastiankrassbusiness@gmail.com">bastiankrassbusiness@gmail.com</a> ·
+  <a href="delete.html" data-en="Delete Account" data-de="Konto löschen">Delete Account</a>
+</footer>
+
+<script>
+  const STORAGE_KEY = 'delta-legal-lang';
+  let currentLang = localStorage.getItem(STORAGE_KEY) || 'en';
+
+  function applyLang(lang) {
+    currentLang = lang;
+    localStorage.setItem(STORAGE_KEY, lang);
+    document.body.className = 'lang-' + lang;
+    document.getElementById('langBtn').textContent = lang === 'en' ? 'DE' : 'EN';
+    document.title = lang === 'en' ? 'Delta – Imprint & Privacy Policy' : 'Delta – Impressum & Datenschutz';
+    // update nav links
+    document.querySelectorAll('[data-en]').forEach(el => {
+      el.textContent = lang === 'en' ? el.dataset.en : el.dataset.de;
+    });
+  }
+
+  function toggleLang() {
+    applyLang(currentLang === 'en' ? 'de' : 'en');
+  }
+
+  applyLang(currentLang);
+</script>
