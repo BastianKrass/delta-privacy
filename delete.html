@@ -1,353 +1,189 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Delete Account – Delta</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+<title>Delta – Delete Account & Data</title>
+<style>
+  :root {
+    --bg:#F7F7FA; --surface:#FFFFFF; --border:#E2E2EC; --text:#1A1A26;
+    --sub:#6B6B7E; --accent:#6D28D9; --accent-l:#EDE9FE;
+    --warn:#DC2626; --warn-l:#FEF2F2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#0D0E14; --surface:#15161E; --border:#252530; --text:#E2E2EE;
+      --sub:#7A7A90; --accent:#8B5CF6; --accent-l:#1E1530;
+      --warn:#F87171; --warn-l:#1F1010;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg:#F7F7FA; --surface:#FFFFFF; --border:#E2E2EC; --text:#1A1A26;
+    --sub:#6B6B7E; --accent:#6D28D9; --accent-l:#EDE9FE;
+    --warn:#DC2626; --warn-l:#FEF2F2;
+  }
+  :root[data-theme="dark"] {
+    --bg:#0D0E14; --surface:#15161E; --border:#252530; --text:#E2E2EE;
+    --sub:#7A7A90; --accent:#8B5CF6; --accent-l:#1E1530;
+    --warn:#F87171; --warn-l:#1F1010;
+  }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #0a0a0f;
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 60px 24px 80px;
-    }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; font-size: 15px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
 
-    /* Background glow */
-    body::before {
-      content: '';
-      position: fixed;
-      top: -200px; left: 50%;
-      transform: translateX(-50%);
-      width: 800px; height: 600px;
-      background: radial-gradient(ellipse, rgba(124,58,237,0.15) 0%, transparent 70%);
-      pointer-events: none;
-    }
+  header { position: sticky; top: 0; z-index: 10; background: var(--surface); border-bottom: 1px solid var(--border); padding: 14px 24px; display: flex; align-items: center; gap: 12px; }
+  .logo { width: 28px; height: 28px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+  .app-name { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
+  nav { margin-left: auto; display: flex; gap: 4px; align-items: center; }
+  nav a { font-size: 13px; color: var(--sub); text-decoration: none; padding: 5px 10px; border-radius: 6px; transition: background 0.15s, color 0.15s; }
+  nav a:hover { background: var(--accent-l); color: var(--accent); }
+  .lang-btn { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 20px; border: 1.5px solid var(--border); background: transparent; color: var(--sub); cursor: pointer; transition: all 0.15s; letter-spacing: 0.04em; }
+  .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-    .container {
-      max-width: 680px;
-      width: 100%;
-      position: relative;
-      z-index: 1;
-    }
+  main { max-width: 640px; margin: 0 auto; padding: 48px 24px 80px; }
 
-    /* Header */
-    .header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 48px;
-    }
-    .logo {
-      width: 48px; height: 48px;
-      background: linear-gradient(135deg, #7c3aed, #6d28d9);
-      border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 24px;
-      box-shadow: 0 4px 20px rgba(124,58,237,0.4);
-    }
-    .app-name {
-      font-size: 22px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: -0.3px;
-    }
-    .app-sub {
-      font-size: 13px;
-      color: rgba(255,255,255,0.4);
-      margin-top: 1px;
-    }
+  .page-title { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); margin-bottom: 8px; text-wrap: balance; }
+  .page-sub { font-size: 14px; color: var(--sub); margin-bottom: 40px; }
 
-    /* Title */
-    h1 {
-      font-size: 38px;
-      font-weight: 800;
-      letter-spacing: -1px;
-      color: #fff;
-      margin-bottom: 12px;
-      line-height: 1.1;
-    }
-    .subtitle {
-      font-size: 17px;
-      color: rgba(255,255,255,0.45);
-      line-height: 1.6;
-      margin-bottom: 40px;
-    }
+  .block { border-left: 2px solid var(--border); padding-left: 20px; margin-bottom: 32px; }
+  .block h2 { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--sub); margin-bottom: 10px; }
+  .block p, .block li { font-size: 14.5px; color: var(--text); line-height: 1.75; }
 
-    /* Divider */
-    .divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(124,58,237,0.3), transparent);
-      margin: 36px 0;
-    }
+  .steps { counter-reset: steps; list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 8px; }
+  .steps li { counter-increment: steps; display: flex; gap: 12px; align-items: flex-start; }
+  .steps li::before { content: counter(steps); flex-shrink: 0; width: 22px; height: 22px; background: var(--accent-l); color: var(--accent); border-radius: 50%; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
 
-    /* Cards */
-    .card {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 20px;
-      padding: 28px;
-      margin-bottom: 20px;
-    }
-    .card-title {
-      font-size: 17px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .card-title .icon {
-      width: 34px; height: 34px;
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 17px;
-    }
-    .ic-red  { background: rgba(239,68,68,0.15); }
-    .ic-blue { background: rgba(99,102,241,0.15); }
-    .ic-gray { background: rgba(255,255,255,0.06); }
+  .warning { background: var(--warn-l); border: 1px solid var(--warn); border-radius: 10px; padding: 14px 16px; font-size: 13.5px; color: var(--warn); margin-top: 14px; display: flex; gap: 8px; align-items: flex-start; }
 
-    .card-body {
-      font-size: 15px;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.65;
-    }
+  .delete-list { list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 5px; }
+  .delete-list li { display: flex; gap: 8px; align-items: flex-start; }
+  .delete-list li::before { content: "✕"; color: var(--warn); font-size: 11px; margin-top: 4px; flex-shrink: 0; }
 
-    /* Steps */
-    .steps {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-top: 4px;
-    }
-    .step {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-    }
-    .step-num {
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      background: rgba(124,58,237,0.2);
-      border: 1px solid rgba(124,58,237,0.4);
-      color: #a78bfa;
-      font-size: 13px;
-      font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-    .step-text {
-      font-size: 15px;
-      color: rgba(255,255,255,0.55);
-      line-height: 1.55;
-    }
-    .step-text strong {
-      color: rgba(255,255,255,0.85);
-      font-weight: 600;
-    }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
 
-    /* Warning box */
-    .warning {
-      background: rgba(239,68,68,0.08);
-      border: 1px solid rgba(239,68,68,0.2);
-      border-radius: 14px;
-      padding: 18px 22px;
-      margin-top: 24px;
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-    }
-    .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
-    .warning-text {
-      font-size: 14px;
-      color: rgba(255,100,100,0.85);
-      line-height: 1.55;
-    }
+  footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 12px; color: var(--sub); }
 
-    /* Data list */
-    .data-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 4px;
-    }
-    .data-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      color: rgba(255,255,255,0.5);
-    }
-    .data-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: rgba(124,58,237,0.6);
-      flex-shrink: 0;
-    }
+  /* lang switching */
+  [data-lang] { display: none; }
+  .lang-en [data-lang="en"], .lang-de [data-lang="de"] { display: revert; }
 
-    /* Contact section */
-    .contact-card {
-      background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(99,102,241,0.06));
-      border: 1px solid rgba(124,58,237,0.25);
-      border-radius: 20px;
-      padding: 28px;
-      text-align: center;
-      margin-top: 8px;
-    }
-    .contact-title {
-      font-size: 18px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 8px;
-    }
-    .contact-sub {
-      font-size: 14px;
-      color: rgba(255,255,255,0.4);
-      margin-bottom: 20px;
-      line-height: 1.5;
-    }
-    .email-link {
-      display: inline-block;
-      background: rgba(124,58,237,0.2);
-      border: 1px solid rgba(124,58,237,0.4);
-      border-radius: 12px;
-      padding: 12px 28px;
-      color: #a78bfa;
-      font-size: 15px;
-      font-weight: 600;
-      text-decoration: none;
-      letter-spacing: -0.2px;
-    }
-    .email-link:hover {
-      background: rgba(124,58,237,0.3);
-    }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
 
-    /* Footer */
-    footer {
-      margin-top: 56px;
-      text-align: center;
-      font-size: 13px;
-      color: rgba(255,255,255,0.2);
-      line-height: 1.6;
-    }
-    footer a {
-      color: rgba(124,58,237,0.6);
-      text-decoration: none;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
+<header>
+  <div class="logo">⚡</div>
+  <span class="app-name">Delta</span>
+  <nav>
+    <a href="index.html" data-en="← Legal" data-de="← Rechtliches">← Legal</a>
+    <button class="lang-btn" onclick="toggleLang()" id="langBtn">DE</button>
+  </nav>
+</header>
 
-    <!-- Header -->
-    <div class="header">
-      <div class="logo">⚡</div>
-      <div>
-        <div class="app-name">Delta</div>
-        <div class="app-sub">Productivity & Habit Tracker</div>
-      </div>
+<main>
+  <p class="page-title">
+    <span data-lang="en">Delete Account &amp; Data</span>
+    <span data-lang="de">Konto &amp; Daten löschen</span>
+  </p>
+  <p class="page-sub">
+    <span data-lang="en">You can permanently delete your Delta account and all associated data at any time.</span>
+    <span data-lang="de">Du kannst dein Delta-Konto und alle zugehörigen Daten jederzeit vollständig und unwiderruflich löschen.</span>
+  </p>
+
+  <div class="block">
+    <h2>
+      <span data-lang="en">Delete in the app</span>
+      <span data-lang="de">In der App löschen</span>
+    </h2>
+    <ol class="steps">
+      <li>
+        <span data-lang="en">Open the Delta App and sign in.</span>
+        <span data-lang="de">Delta App öffnen und anmelden.</span>
+      </li>
+      <li>
+        <span data-lang="en">Tap the <strong>Profile</strong> tab in the bottom right corner.</span>
+        <span data-lang="de">Tab <strong>Profil</strong> unten rechts antippen.</span>
+      </li>
+      <li>
+        <span data-lang="en">Scroll down and tap <strong>"Delete Account"</strong>.</span>
+        <span data-lang="de">Nach unten scrollen und <strong>„Konto löschen"</strong> antippen.</span>
+      </li>
+      <li>
+        <span data-lang="en">Confirm the deletion — all your data will be permanently deleted immediately.</span>
+        <span data-lang="de">Löschung bestätigen — alle Daten werden sofort permanent gelöscht.</span>
+      </li>
+    </ol>
+    <div class="warning">
+      <span>⚠️</span>
+      <span data-lang="en">This action cannot be undone. All data will be permanently and irreversibly deleted.</span>
+      <span data-lang="de">Diese Aktion kann nicht rückgängig gemacht werden. Alle Daten werden sofort und unwiderruflich gelöscht.</span>
     </div>
-
-    <!-- Title -->
-    <h1>Delete Account &amp; Data</h1>
-    <p class="subtitle">
-      You can delete your Delta account and all associated data at any time directly in the app.
-      Follow the steps below or contact us via email.
-    </p>
-
-    <div class="divider"></div>
-
-    <!-- In-App deletion -->
-    <div class="card">
-      <div class="card-title">
-        <div class="icon ic-blue">📱</div>
-        Delete your account in the app
-      </div>
-      <div class="card-body">
-        <div class="steps">
-          <div class="step">
-            <div class="step-num">1</div>
-            <div class="step-text">Open the <strong>Delta App</strong> and sign in.</div>
-          </div>
-          <div class="step">
-            <div class="step-num">2</div>
-            <div class="step-text">Tap the <strong>Profile tab</strong> in the bottom right corner.</div>
-          </div>
-          <div class="step">
-            <div class="step-num">3</div>
-            <div class="step-text">Scroll down and tap <strong>"Delete Account"</strong>.</div>
-          </div>
-          <div class="step">
-            <div class="step-num">4</div>
-            <div class="step-text">Confirm the deletion. <strong>All your data will be permanently deleted immediately.</strong></div>
-          </div>
-        </div>
-
-        <div class="warning">
-          <div class="warning-icon">⚠️</div>
-          <div class="warning-text">
-            This action cannot be undone. All your data will be permanently and irreversibly deleted.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- What gets deleted -->
-    <div class="card">
-      <div class="card-title">
-        <div class="icon ic-red">🗑️</div>
-        What gets deleted?
-      </div>
-      <div class="card-body">
-        <div class="data-list">
-          <div class="data-item"><div class="data-dot"></div>Google account link (name, email address)</div>
-          <div class="data-item"><div class="data-dot"></div>All tasks and completed items</div>
-          <div class="data-item"><div class="data-dot"></div>All habits and streaks</div>
-          <div class="data-item"><div class="data-dot"></div>All calendar entries and time blocks</div>
-          <div class="data-item"><div class="data-dot"></div>XP, level and earned badges</div>
-          <div class="data-item"><div class="data-dot"></div>All statistics and progress data</div>
-          <div class="data-item"><div class="data-dot"></div>Delta Pro subscription status</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Request via email -->
-    <div class="card">
-      <div class="card-title">
-        <div class="icon ic-gray">📧</div>
-        Request deletion via email
-      </div>
-      <div class="card-body">
-        If you no longer have access to the app, you can request deletion of your data by email.
-        Please include the email address you used to sign up for Delta.
-        We will process your request within <strong style="color:rgba(255,255,255,0.8);">30 days</strong>.
-      </div>
-    </div>
-
-    <!-- Contact -->
-    <div class="contact-card">
-      <div class="contact-title">Contact</div>
-      <div class="contact-sub">
-        For questions about data deletion or privacy, reach us at:
-      </div>
-      <a href="mailto:support@delta-app.com" class="email-link">
-        support@delta-app.com
-      </a>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-      <p>© 2026 Delta App · <a href="https://bastiankrass.github.io/delta-privacy/">Privacy Policy</a></p>
-      <p style="margin-top:6px;">Your data is stored exclusively via Firebase (Google) and is never shared with third parties.</p>
-    </footer>
-
   </div>
-</body>
-</html>
+
+  <div class="block">
+    <h2>
+      <span data-lang="en">What gets deleted</span>
+      <span data-lang="de">Was gelöscht wird</span>
+    </h2>
+    <ul class="delete-list">
+      <li>
+        <span data-lang="en">Google account link (name, email address)</span>
+        <span data-lang="de">Google-Konto-Verknüpfung (Name, E-Mail-Adresse)</span>
+      </li>
+      <li>
+        <span data-lang="en">All tasks and completed items</span>
+        <span data-lang="de">Alle Aufgaben und erledigten Einträge</span>
+      </li>
+      <li>
+        <span data-lang="en">All habits and streaks</span>
+        <span data-lang="de">Alle Gewohnheiten und Streaks</span>
+      </li>
+      <li>
+        <span data-lang="en">All calendar entries and time blocks</span>
+        <span data-lang="de">Alle Kalendereinträge und Zeitblöcke</span>
+      </li>
+      <li>
+        <span data-lang="en">XP, level and earned badges</span>
+        <span data-lang="de">XP, Level und verdiente Abzeichen</span>
+      </li>
+      <li>
+        <span data-lang="en">All statistics and progress data</span>
+        <span data-lang="de">Alle Statistiken und Fortschrittsdaten</span>
+      </li>
+      <li>
+        <span data-lang="en">Delta Pro subscription status</span>
+        <span data-lang="de">Delta Pro Abonnementstatus</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <h2>
+      <span data-lang="en">Request deletion via email</span>
+      <span data-lang="de">Löschung per E-Mail beantragen</span>
+    </h2>
+    <p data-lang="en">If you no longer have access to the app, you can request deletion of your data by email. Please include the email address you used to sign up for Delta. We will process your request within 30 days.</p>
+    <p data-lang="de">Falls du keinen Zugang mehr zur App hast, kannst du die Löschung deiner Daten per E-Mail beantragen. Bitte gib die E-Mail-Adresse an, mit der du dich bei Delta angemeldet hast. Wir bearbeiten deine Anfrage innerhalb von 30 Tagen.</p>
+    <p style="margin-top:12px;"><a href="mailto:bastiankrassbusiness@gmail.com">bastiankrassbusiness@gmail.com</a></p>
+  </div>
+</main>
+
+<footer>
+  © 2026 Delta App ·
+  <a href="index.html" data-en="Imprint &amp; Privacy" data-de="Impressum &amp; Datenschutz">Imprint &amp; Privacy</a>
+</footer>
+
+<script>
+  const STORAGE_KEY = 'delta-legal-lang';
+  let currentLang = localStorage.getItem(STORAGE_KEY) || 'en';
+
+  function applyLang(lang) {
+    currentLang = lang;
+    localStorage.setItem(STORAGE_KEY, lang);
+    document.body.className = 'lang-' + lang;
+    document.getElementById('langBtn').textContent = lang === 'en' ? 'DE' : 'EN';
+    document.title = lang === 'en' ? 'Delta – Delete Account & Data' : 'Delta – Konto & Daten löschen';
+    document.querySelectorAll('[data-en]').forEach(el => {
+      el.textContent = lang === 'en' ? el.dataset.en : el.dataset.de;
+    });
+  }
+
+  function toggleLang() { applyLang(currentLang === 'en' ? 'de' : 'en'); }
+
+  applyLang(currentLang);
+</script>
